@@ -42,7 +42,7 @@ class Application
     elsif choice == "2"
       result = @artist_repository.all
       result.each do |record|
-        @io.puts "* #{record.id} - #{record.artist}"
+        @io.puts "* #{record.id} - #{record.name}"
       end
     end
     
