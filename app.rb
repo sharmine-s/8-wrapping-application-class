@@ -37,14 +37,15 @@ class Application
     if choice == "1"
       result = @album_repository.all
       result.each do |record|
-        p  "* #{record.id} - #{record.title}"
+        @io.puts "* #{record.id} - #{record.title}"
       end
     elsif choice == "2"
       result = @artist_repository.all
       result.each do |record|
-        p  "* #{record.id} - #{record.artist}"
+        @io.puts "* #{record.id} - #{record.artist}"
       end
     end
+    
   end
 end
 

@@ -12,24 +12,7 @@ describe Application do
     reset_music_library
   end
 
-  it "Says Hello and asks what you would like to do" do
-    albums = AlbumRepository.new
-    artists = ArtistRepository.new
-    io = double :io
-    expect(io).to receive(:puts).with("Welcome to the music library manager!")
-    expect(io).to receive(:puts).with("")
-    expect(io).to receive(:puts).with("What would you like to do?")
-    expect(io).to receive(:puts).with(" 1 - List all albums")
-    expect(io).to receive(:puts).with(" 2 - List all artists")
-    expect(io).to receive(:puts).with("")
-    expect(io).to receive(:puts).with("Enter you choice:")
-    expect(io).to receive(:gets).and_return("1")
-    
-    app = Application.new('music_library_test', io, albums, artists)
-    app.run
-  end
-
-  it "Returns an ordered list of all ids and albums" do
+  it "Returns an ordered list of all ids and albums when selecting 1" do
     albums = AlbumRepository.new
     artists = ArtistRepository.new
     io = double :io
@@ -40,7 +23,9 @@ describe Application do
     expect(io).to receive(:puts).with(" 2 - List all artists").ordered
     expect(io).to receive(:puts).with("").ordered
     expect(io).to receive(:puts).with("Enter you choice:").ordered
-    expect(io).to receive(:gets).and_return("* 1 - Rumours\n* 2 - Dangerous Woman").ordered
+    expect(io).to receive(:gets).and_return("1").ordered
+    expect(io).to receive(:puts).with("* 1 - Rumours").ordered
+    expect(io).to receive(:puts).with("* 2 - Dangerous Woman").ordered
 
     app = Application.new('music_library_test', io, albums, artists)
     app.run
